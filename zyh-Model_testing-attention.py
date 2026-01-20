@@ -10,11 +10,14 @@ import random
 import json
 import seaborn as sns
 from tqdm import tqdm
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Paths - Adjusted for Windows
-DIR_DATA = "D:/NUS/BMI5101/DNN/Data_Processed/" 
-DIR_NET_SAVING = "D:/NUS/BMI5101/DNN/Models_Testing_Attention/" 
-DIR_DATA_TEST = "D:/NUS/BMI5101/DNN/Data_Processed/" 
+DIR_DATA = os.getenv("DIR_DATA") 
+DIR_NET_SAVING = os.getenv("DIR_NET_SAVING_TESTING_ATTENTION") 
+DIR_DATA_TEST = os.getenv("DIR_DATA_TEST") 
 SUBJECT_USED_FOR_TESTING = "S17"
 
 # Create saving dir if not exists

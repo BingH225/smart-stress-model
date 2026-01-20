@@ -6,6 +6,10 @@ from IPython.display import clear_output
 import scipy.stats as stats
 import heartpy
 import json
+from dotenv import load_dotenv
+
+load_dotenv()
+
 """Please extract the files in WESAD.zip in a file that will contains S2,S3,...Sk folders of the subject
 
 If you want to use a subject for testing (I have used the S17 for testing) I suggest you to move your S17 file to a Testing folder.
@@ -13,8 +17,8 @@ That is to say for eg : /content/data/WESAD contains S2,S3,...Sk folders but doe
                         /content/data/Testing contains S17 folder
 """
 
-DIR_WESAD="D:/NUS/BMI5101/WESAD/" # Please complete the path to your file that contains S2,S3,...Sk folders. eg : DIR_WESAD=/content/data/WESAD/
-DIR_SAVING_DATA= "D:/NUS/BMI5101/DNN/Data_Processed/" #Please complete the path where you want to save your data once treated
+DIR_WESAD=os.getenv("DIR_WESAD") # Please complete the path to your file that contains S2,S3,...Sk folders. eg : DIR_WESAD=/content/data/WESAD/
+DIR_SAVING_DATA= os.getenv("DIR_SAVING_DATA") #Please complete the path where you want to save your data once treated
 # Fonctions extraction ECG
 def peak_pos(x : np.array,threshhold: float):
   """ Detect the ECG peaks on the signal x, peaks detected must go above the float value threshold

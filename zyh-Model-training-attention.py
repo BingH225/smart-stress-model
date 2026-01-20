@@ -10,10 +10,13 @@ import random
 import json
 import seaborn as sns
 from tqdm import tqdm
+from dotenv import load_dotenv
 
-DIR_DATA="D:/NUS/BMI5101/DNN/Data_Processed/" #Path where your dataset files are stored, this folder contains WESADECG_S2.json,WESADECG_S3.json,...WESADECG_Sk.json files
-DIR_NET_SAVING="D:/NUS/BMI5101/DNN/Models_Attention/" #Path where model's weights are saved for each training
-DIR_RESULTS="D:/NUS/BMI5101/DNN/Results_Attention/" #Path to save Results of the network (loss function)
+load_dotenv()
+
+DIR_DATA=os.getenv("DIR_DATA") #Path where your dataset files are stored, this folder contains WESADECG_S2.json,WESADECG_S3.json,...WESADECG_Sk.json files
+DIR_NET_SAVING=os.getenv("DIR_NET_SAVING_ATTENTION") #Path where model's weights are saved for each training
+DIR_RESULTS=os.getenv("DIR_RESULTS_ATTENTION") #Path to save Results of the network (loss function)
 
 # Create directories if they don't exist
 if not os.path.exists(DIR_NET_SAVING):
