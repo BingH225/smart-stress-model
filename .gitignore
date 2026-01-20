@@ -1,0 +1,30 @@
+# Data folders
+[Dd]ata/
+Data_Processed/
+**/data/
+**/Data*/
+
+# Model folders
+[Mm]odels/
+[Mm]odel*/
+**/Models/
+**/Models*/
+
+# Result folders
+[Rr]esults/
+[Rr]esult*/
+**/Results/
+**/Results*/
+**/result.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
