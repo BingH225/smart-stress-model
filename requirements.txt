@@ -1,0 +1,10 @@
+torch
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+heartpy
+python-dotenv
+tqdm
+ipython
