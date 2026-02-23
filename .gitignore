@@ -32,3 +32,6 @@ venv.bak/
 # py files
 zyh-Model_testing_save_pred.py
 test_cuda.py
+
+walkthrough*
+execution*
