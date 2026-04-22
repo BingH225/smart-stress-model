@@ -1,0 +1,36 @@
+#!/bin/bash
+#PBS -N swell_approx_gpu_eval
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=01:30:00
+#PBS -j oe
+#PBS -o /home/users/nus/e1553307/scratch/smartstress_jobs/swell_approx_20260410_093850/pbs.out
+
+set -euo pipefail
+
+RUN_ROOT="/home/users/nus/e1553307/scratch/smartstress_jobs/swell_approx_20260410_093850"
+WORKDIR="$RUN_ROOT/remote_bundle_gpu_20260410"
+cd "$WORKDIR"
+
+# Keep a host-side venv under scratch as requested by the user.
+if [ ! -d "$RUN_ROOT/.venv" ]; then
+  python3 -m venv "$RUN_ROOT/.venv"
+fi
+
+module load apptainer/1.2.2 || true
+
+IMG="$WORKDIR/pytorch_2.2.2_cuda12.1_cudnn8_devel.sif"
+if [ ! -f "$IMG" ]; then
+  apptainer pull "$IMG" docker://pytorch/pytorch:2.2.2-cuda12.1-cudnn8-devel
+fi
+
+apptainer exec --nv --cleanenv \
+  --bind "$WORKDIR:/workspace" \
+  "$IMG" \
+  python /workspace/evaluate_mapped_json.py \
+  --test-json /workspace/data/SWELL_APPROX_TEST.json \
+  --results-json /workspace/results/cross_val_results.json \
+  --models-dir /workspace/models \
+  --output-json /workspace/results/swell_approx_eval_report_remote_gpu.json \
+  --threshold 0.5
+
+echo "DONE $(date)"

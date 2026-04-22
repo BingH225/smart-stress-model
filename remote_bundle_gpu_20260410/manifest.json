@@ -1,0 +1,25 @@
+{
+  "num_folds": 15,
+  "files": [
+    "data/SWELL_APPROX_TEST.json",
+    "data/SWELL_APPROX_TRAIN.json",
+    "evaluate_mapped_json.py",
+    "evaluate_swell_approx_mapping.py",
+    "models/fold_0_DNN/epoch_5.pth",
+    "models/fold_10_DNN/epoch_38.pth",
+    "models/fold_11_DNN/epoch_49.pth",
+    "models/fold_12_DNN/epoch_17.pth",
+    "models/fold_13_DNN/epoch_47.pth",
+    "models/fold_14_DNN/epoch_49.pth",
+    "models/fold_1_DNN/epoch_47.pth",
+    "models/fold_2_DNN/epoch_41.pth",
+    "models/fold_3_DNN/epoch_49.pth",
+    "models/fold_4_DNN/epoch_38.pth",
+    "models/fold_5_DNN/epoch_30.pth",
+    "models/fold_6_DNN/epoch_39.pth",
+    "models/fold_7_DNN/epoch_49.pth",
+    "models/fold_8_DNN/epoch_46.pth",
+    "models/fold_9_DNN/epoch_49.pth",
+    "results/cross_val_results.json"
+  ]
+}
