@@ -49,3 +49,4 @@
 - Ran local smoke checks: Python syntax checks, asset preparation run, and local evaluation smoke run with the new stepwise evaluator.
 - Updated the orchestration script to persist step decision logs on the main branch for both accepted and rejected steps.
 - Fixed null-safe handling for empty git tag/branch query output in `Invoke-StepwiseStressIDFix.ps1`.
+- Fixed model directory wildcard copy logic in `Invoke-StepwiseStressIDFix.ps1` (`Copy-Item` path construction).

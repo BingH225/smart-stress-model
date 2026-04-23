@@ -287,7 +287,8 @@ function Invoke-Step {
     Copy-Item -Path $cfgPath -Destination (Join-Path $bundleConfig "step_config.json") -Force
 
     Copy-Item -Path (Join-Path $RepoRoot $StepDef.resultsRel) -Destination (Join-Path $bundleResults "cross_val_results.json") -Force
-    Copy-Item -Path (Join-Path $RepoRoot $StepDef.modelsRel "\*") -Destination $bundleModels -Recurse -Force
+    $modelsPath = Join-Path $RepoRoot $StepDef.modelsRel
+    Copy-Item -Path (Join-Path $modelsPath "*") -Destination $bundleModels -Recurse -Force
 
     $pbsTemplate = Join-Path $RepoRoot "remote_bundle_gpu_20260410/run_gpu_container.template.pbs"
     $outputJsonName = "stressid_eval_step${stepId}.json"
