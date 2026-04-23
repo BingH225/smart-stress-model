@@ -1,0 +1,476 @@
+{
+  "step_name": "step1_domain_coral",
+  "config": {
+    "step_name": "step1_domain_coral",
+    "threshold": 0.5,
+    "enable_coral": true,
+    "enable_robust_norm": false,
+    "robust_clip": 8,
+    "enable_temp_scaling": false,
+    "enable_threshold_search": false,
+    "enable_quality_filter": false,
+    "quality_z_threshold": 6
+  },
+  "source_stats_json": "/workspace/config/source_stats.json",
+  "calib_json": "/workspace/data/STRESSID_CALIB.json",
+  "test_json": "/workspace/data/STRESSID_TEST.json",
+  "test_samples": 306221,
+  "fold_results": [
+    {
+      "fold": 1,
+      "wesad_test_subject": "S2",
+      "checkpoint": "/workspace/models/fold_0_DNN/epoch_5.pth",
+      "metrics": {
+        "accuracy": 0.5379154270935044,
+        "precision": 0.42727188627463075,
+        "recall": 0.32641010137496174,
+        "f1": 0.3700920600438042,
+        "TP": 41568,
+        "TN": 123153,
+        "FP": 55719,
+        "FN": 85781,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5389262621644569,
+        "precision": 0.4283940397350993,
+        "recall": 0.3250883392226148,
+        "f1": 0.36965935979284786,
+        "TP": 8280,
+        "TN": 24726,
+        "FP": 11048,
+        "FN": 17190,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 2,
+      "wesad_test_subject": "S3",
+      "checkpoint": "/workspace/models/fold_1_DNN/epoch_47.pth",
+      "metrics": {
+        "accuracy": 0.5394894536952071,
+        "precision": 0.42552658247158687,
+        "recall": 0.3066455174363364,
+        "f1": 0.35643483023001094,
+        "TP": 39051,
+        "TN": 126152,
+        "FP": 52720,
+        "FN": 88298,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5400202468813271,
+        "precision": 0.4260283726789724,
+        "recall": 0.30537887711032585,
+        "f1": 0.35575273858256906,
+        "TP": 7778,
+        "TN": 25295,
+        "FP": 10479,
+        "FN": 17692,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 3,
+      "wesad_test_subject": "S4",
+      "checkpoint": "/workspace/models/fold_2_DNN/epoch_41.pth",
+      "metrics": {
+        "accuracy": 0.5439306905796794,
+        "precision": 0.4308071098519343,
+        "recall": 0.3008975335495371,
+        "f1": 0.35432000591781637,
+        "TP": 38319,
+        "TN": 128244,
+        "FP": 50628,
+        "FN": 89030,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5447717327411665,
+        "precision": 0.43199774266365687,
+        "recall": 0.3005496662740479,
+        "f1": 0.3544802037508682,
+        "TP": 7655,
+        "TN": 25709,
+        "FP": 10065,
+        "FN": 17815,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 4,
+      "wesad_test_subject": "S5",
+      "checkpoint": "/workspace/models/fold_3_DNN/epoch_49.pth",
+      "metrics": {
+        "accuracy": 0.5401817641507277,
+        "precision": 0.42734978135291257,
+        "recall": 0.31079160417435553,
+        "f1": 0.35986797839646495,
+        "TP": 39579,
+        "TN": 125836,
+        "FP": 53036,
+        "FN": 87770,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.540738684605839,
+        "precision": 0.4279672504473242,
+        "recall": 0.3098939929328622,
+        "f1": 0.3594835242411132,
+        "TP": 7893,
+        "TN": 25224,
+        "FP": 10550,
+        "FN": 17577,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 5,
+      "wesad_test_subject": "S6",
+      "checkpoint": "/workspace/models/fold_4_DNN/epoch_38.pth",
+      "metrics": {
+        "accuracy": 0.5494299868395701,
+        "precision": 0.4331702162454556,
+        "recall": 0.2703908157896803,
+        "f1": 0.3329497877607062,
+        "TP": 34434,
+        "TN": 133813,
+        "FP": 45059,
+        "FN": 92915,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5499804062438769,
+        "precision": 0.43405865657521286,
+        "recall": 0.2702002355712603,
+        "f1": 0.33306715063520875,
+        "TP": 6882,
+        "TN": 26801,
+        "FP": 8973,
+        "FN": 18588,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 6,
+      "wesad_test_subject": "S7",
+      "checkpoint": "/workspace/models/fold_5_DNN/epoch_30.pth",
+      "metrics": {
+        "accuracy": 0.540583434839544,
+        "precision": 0.4269737995092885,
+        "recall": 0.30609584684606866,
+        "f1": 0.3565688673420384,
+        "TP": 38981,
+        "TN": 126557,
+        "FP": 52315,
+        "FN": 88368,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5406080595650186,
+        "precision": 0.4267092019140861,
+        "recall": 0.30459363957597174,
+        "f1": 0.3554557742090674,
+        "TP": 7758,
+        "TN": 25351,
+        "FP": 10423,
+        "FN": 17712,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 7,
+      "wesad_test_subject": "S8",
+      "checkpoint": "/workspace/models/fold_6_DNN/epoch_39.pth",
+      "metrics": {
+        "accuracy": 0.541066745912266,
+        "precision": 0.42600448933782264,
+        "recall": 0.2980549513541528,
+        "f1": 0.3507246510725391,
+        "TP": 37957,
+        "TN": 127729,
+        "FP": 51143,
+        "FN": 89392,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5421429037946575,
+        "precision": 0.42751621088243585,
+        "recall": 0.29768354927365526,
+        "f1": 0.35097789607684293,
+        "TP": 7582,
+        "TN": 25621,
+        "FP": 10153,
+        "FN": 17888,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 8,
+      "wesad_test_subject": "S9",
+      "checkpoint": "/workspace/models/fold_7_DNN/epoch_49.pth",
+      "metrics": {
+        "accuracy": 0.5432220520473775,
+        "precision": 0.4291772209155057,
+        "recall": 0.2980235416061375,
+        "f1": 0.3517733257330349,
+        "TP": 37953,
+        "TN": 128393,
+        "FP": 50479,
+        "FN": 89396,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5435307948533734,
+        "precision": 0.42946317103620474,
+        "recall": 0.29713388299960736,
+        "f1": 0.3512484915993688,
+        "TP": 7568,
+        "TN": 25720,
+        "FP": 10054,
+        "FN": 17902,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 9,
+      "wesad_test_subject": "S10",
+      "checkpoint": "/workspace/models/fold_8_DNN/epoch_46.pth",
+      "metrics": {
+        "accuracy": 0.5391073766985282,
+        "precision": 0.42547141250756854,
+        "recall": 0.3090012485374836,
+        "f1": 0.35800161028398314,
+        "TP": 39351,
+        "TN": 125735,
+        "FP": 53137,
+        "FN": 87998,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5392038403762002,
+        "precision": 0.4254511950571785,
+        "recall": 0.3082057322340008,
+        "f1": 0.35745998497301973,
+        "TP": 7850,
+        "TN": 25173,
+        "FP": 10601,
+        "FN": 17620,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 10,
+      "wesad_test_subject": "S11",
+      "checkpoint": "/workspace/models/fold_9_DNN/epoch_49.pth",
+      "metrics": {
+        "accuracy": 0.5415925099846189,
+        "precision": 0.4262515995334458,
+        "recall": 0.29557358126094435,
+        "f1": 0.3490837259338947,
+        "TP": 37641,
+        "TN": 128206,
+        "FP": 50666,
+        "FN": 89708,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5424368101365031,
+        "precision": 0.4274097241967586,
+        "recall": 0.2950922654102866,
+        "f1": 0.3491348275461618,
+        "TP": 7516,
+        "TN": 25705,
+        "FP": 10069,
+        "FN": 17954,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 11,
+      "wesad_test_subject": "S13",
+      "checkpoint": "/workspace/models/fold_10_DNN/epoch_38.pth",
+      "metrics": {
+        "accuracy": 0.5404593414560073,
+        "precision": 0.428291040133851,
+        "recall": 0.31357136687370923,
+        "f1": 0.36206122754287423,
+        "TP": 39933,
+        "TN": 125567,
+        "FP": 53305,
+        "FN": 87416,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5406243876951211,
+        "precision": 0.428279129872927,
+        "recall": 0.31228896741264234,
+        "f1": 0.3612006720857364,
+        "TP": 7954,
+        "TN": 25156,
+        "FP": 10618,
+        "FN": 17516,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 12,
+      "wesad_test_subject": "S14",
+      "checkpoint": "/workspace/models/fold_11_DNN/epoch_49.pth",
+      "metrics": {
+        "accuracy": 0.5369422737173479,
+        "precision": 0.423213052027422,
+        "recall": 0.3126683366182695,
+        "f1": 0.35963763469024634,
+        "TP": 39818,
+        "TN": 124605,
+        "FP": 54267,
+        "FN": 87531,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5373424335445105,
+        "precision": 0.4235469925815232,
+        "recall": 0.3115822536317236,
+        "f1": 0.35903816137715744,
+        "TP": 7936,
+        "TN": 24973,
+        "FP": 10801,
+        "FN": 17534,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 13,
+      "wesad_test_subject": "S15",
+      "checkpoint": "/workspace/models/fold_12_DNN/epoch_17.pth",
+      "metrics": {
+        "accuracy": 0.5455471701810131,
+        "precision": 0.4342292789382265,
+        "recall": 0.3062371907121375,
+        "f1": 0.3591713060816629,
+        "TP": 38999,
+        "TN": 128059,
+        "FP": 50813,
+        "FN": 88350,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5456534517667037,
+        "precision": 0.43413106687541936,
+        "recall": 0.30482921083627795,
+        "f1": 0.35816764312404853,
+        "TP": 7764,
+        "TN": 25654,
+        "FP": 10120,
+        "FN": 17706,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 14,
+      "wesad_test_subject": "S16",
+      "checkpoint": "/workspace/models/fold_13_DNN/epoch_47.pth",
+      "metrics": {
+        "accuracy": 0.5462264181751089,
+        "precision": 0.43152155955724436,
+        "recall": 0.287147916355841,
+        "f1": 0.3448331140878208,
+        "TP": 36568,
+        "TN": 130698,
+        "FP": 48174,
+        "FN": 90781,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.546812749003984,
+        "precision": 0.4323283776579992,
+        "recall": 0.2865724381625442,
+        "f1": 0.3446745212853871,
+        "TP": 7299,
+        "TN": 26190,
+        "FP": 9584,
+        "FN": 18171,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    },
+    {
+      "fold": 15,
+      "wesad_test_subject": "S17",
+      "checkpoint": "/workspace/models/fold_14_DNN/epoch_49.pth",
+      "metrics": {
+        "accuracy": 0.5408904026830296,
+        "precision": 0.42793538133286885,
+        "recall": 0.30868715105733063,
+        "f1": 0.3586590089001008,
+        "TP": 39311,
+        "TN": 126321,
+        "FP": 52551,
+        "FN": 88038,
+        "total_samples": 306221
+      },
+      "selected_threshold": 0.5,
+      "selected_temperature": 1.0,
+      "calib_metrics_at_selected_threshold": {
+        "accuracy": 0.5415387629808635,
+        "precision": 0.4286730117055027,
+        "recall": 0.3076953278366706,
+        "f1": 0.358246480160907,
+        "TP": 7837,
+        "TN": 25329,
+        "FP": 10445,
+        "FN": 17633,
+        "total_samples": 61244
+      },
+      "quality_replaced_samples": 0
+    }
+  ],
+  "average_metrics": {
+    "accuracy": 0.5417723365369019,
+    "precision": 0.42821296066598424,
+    "recall": 0.3033464469031298,
+    "f1": 0.35494527560113315
+  }
+}

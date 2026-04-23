@@ -1,0 +1,27 @@
+﻿{
+    "step_id":  1,
+    "step_name":  "domain_coral",
+    "timestamp":  "20260423_144056",
+    "dry_run":  false,
+    "remote_host":  "aspire2a.nus",
+    "remote_run_root":  "/home/users/nus/e1553307/scratch/smartstress_jobs/step1_domain_coral_20260423_144056",
+    "job_id":  "13855843.pbs101",
+    "rule":  {
+                 "f1_must_improve":  true,
+                 "max_accuracy_drop":  0.01
+             },
+    "champion_before":  {
+                            "accuracy":  0.4883675515395744,
+                            "f1":  0.50007431850141726,
+                            "recall":  0.61713297055074368,
+                            "source":  "D:\\NUS\\BMI5101\\smart-stress-model\\Results_StressID_Compare\\stressid_crossval_eval.json",
+                            "precision":  0.42127688921009127
+                        },
+    "candidate_metrics":  {
+                              "accuracy":  0.54177233653690193,
+                              "precision":  0.42821296066598424,
+                              "recall":  0.30334644690312978,
+                              "f1":  0.35494527560113315
+                          },
+    "accepted":  false
+}

@@ -1,0 +1,23 @@
+INFO:    Using cached SIF image
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+INFO:    underlay of /etc/localtime required more than 50 (76) bind mounts
+INFO:    underlay of /usr/bin/nvidia-smi required more than 50 (388) bind mounts
+Fold 01 (S2) | Acc=0.5379 Prec=0.4273 Rec=0.3264 F1=0.3701 T=1.0000 Thr=0.5000
+Fold 02 (S3) | Acc=0.5395 Prec=0.4255 Rec=0.3066 F1=0.3564 T=1.0000 Thr=0.5000
+Fold 03 (S4) | Acc=0.5439 Prec=0.4308 Rec=0.3009 F1=0.3543 T=1.0000 Thr=0.5000
+Fold 04 (S5) | Acc=0.5402 Prec=0.4273 Rec=0.3108 F1=0.3599 T=1.0000 Thr=0.5000
+Fold 05 (S6) | Acc=0.5494 Prec=0.4332 Rec=0.2704 F1=0.3329 T=1.0000 Thr=0.5000
+Fold 06 (S7) | Acc=0.5406 Prec=0.4270 Rec=0.3061 F1=0.3566 T=1.0000 Thr=0.5000
+Fold 07 (S8) | Acc=0.5411 Prec=0.4260 Rec=0.2981 F1=0.3507 T=1.0000 Thr=0.5000
+Fold 08 (S9) | Acc=0.5432 Prec=0.4292 Rec=0.2980 F1=0.3518 T=1.0000 Thr=0.5000
+Fold 09 (S10) | Acc=0.5391 Prec=0.4255 Rec=0.3090 F1=0.3580 T=1.0000 Thr=0.5000
+Fold 10 (S11) | Acc=0.5416 Prec=0.4263 Rec=0.2956 F1=0.3491 T=1.0000 Thr=0.5000
+Fold 11 (S13) | Acc=0.5405 Prec=0.4283 Rec=0.3136 F1=0.3621 T=1.0000 Thr=0.5000
+Fold 12 (S14) | Acc=0.5369 Prec=0.4232 Rec=0.3127 F1=0.3596 T=1.0000 Thr=0.5000
+Fold 13 (S15) | Acc=0.5455 Prec=0.4342 Rec=0.3062 F1=0.3592 T=1.0000 Thr=0.5000
+Fold 14 (S16) | Acc=0.5462 Prec=0.4315 Rec=0.2871 F1=0.3448 T=1.0000 Thr=0.5000
+Fold 15 (S17) | Acc=0.5409 Prec=0.4279 Rec=0.3087 F1=0.3587 T=1.0000 Thr=0.5000
+Average over folds | Acc=0.5418 Prec=0.4282 Rec=0.3033 F1=0.3549
+Saved report: /workspace/results/stressid_eval_step1.json
+DONE Thu Apr 23 14:44:00 +08 2026
+/var/spool/pbs/mom_priv/jobs/13855843.pbs101.SC: line 40: $'\r': command not found
