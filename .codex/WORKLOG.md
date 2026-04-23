@@ -51,3 +51,4 @@
 - Fixed null-safe handling for empty git tag/branch query output in `Invoke-StepwiseStressIDFix.ps1`.
 - Fixed model directory wildcard copy logic in `Invoke-StepwiseStressIDFix.ps1` (`Copy-Item` path construction).
 - Fixed `scp` remote path formatting in `Invoke-StepwiseStressIDFix.ps1` to avoid path canonicalization errors on Aspire.
+- Replaced remote bundle upload from `scp -r` to `tar | ssh` streaming in `Invoke-StepwiseStressIDFix.ps1` for Aspire compatibility.
