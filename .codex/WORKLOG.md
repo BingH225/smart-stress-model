@@ -50,3 +50,4 @@
 - Updated the orchestration script to persist step decision logs on the main branch for both accepted and rejected steps.
 - Fixed null-safe handling for empty git tag/branch query output in `Invoke-StepwiseStressIDFix.ps1`.
 - Fixed model directory wildcard copy logic in `Invoke-StepwiseStressIDFix.ps1` (`Copy-Item` path construction).
+- Fixed `scp` remote path formatting in `Invoke-StepwiseStressIDFix.ps1` to avoid path canonicalization errors on Aspire.

@@ -305,7 +305,7 @@ function Invoke-Step {
     $jobId = "DRYRUN"
     if (-not $DryRun) {
         Invoke-Cmd -Command "ssh $RemoteHost `"mkdir -p $remoteRunRoot`""
-        Invoke-Cmd -Command "scp -r `"$bundleDir`" ${RemoteHost}:`"$remoteRunRoot/`""
+        Invoke-Cmd -Command "scp -r `"$bundleDir`" ${RemoteHost}:$remoteRunRoot/"
         $submitOut = (& ssh $RemoteHost "cd $remoteRunRoot/remote_bundle_gpu_20260410 && qsub run_gpu_container.pbs").Trim()
         if ([string]::IsNullOrWhiteSpace($submitOut)) {
             throw "Failed to submit qsub job for step $stepId"
@@ -316,8 +316,8 @@ function Invoke-Step {
         $remoteEval = "$remoteRunRoot/remote_bundle_gpu_20260410/results/$outputJsonName"
         $remotePbsOut = "$remoteRunRoot/pbs.out"
         Copy-Item -Path (Join-Path $bundleDir "run_gpu_container.pbs") -Destination (Join-Path $stepDir "run_gpu_container.pbs") -Force
-        Invoke-Cmd -Command "scp ${RemoteHost}:`"$remoteEval`" `"$stepDir/eval_report.json`""
-        Invoke-Cmd -Command "scp ${RemoteHost}:`"$remotePbsOut`" `"$stepDir/pbs.out`""
+        Invoke-Cmd -Command "scp ${RemoteHost}:$remoteEval `"$stepDir/eval_report.json`""
+        Invoke-Cmd -Command "scp ${RemoteHost}:$remotePbsOut `"$stepDir/pbs.out`""
     } else {
         Copy-Item -Path (Join-Path $bundleDir "run_gpu_container.pbs") -Destination (Join-Path $stepDir "run_gpu_container.pbs") -Force
     }
