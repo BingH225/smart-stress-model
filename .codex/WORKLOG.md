@@ -28,3 +28,17 @@
 - Computed comparison summaries against previous 700Hz cross-validation and StressID external evaluation metrics.
 - Saved external-eval delta report `Results_StressID_Compare/comparison_stressid_700_vs_100_cv.json` (100Hz-vs-700Hz checkpoints on StressID).
 - Saved WESAD LOSO DNN aggregate comparison report `Results_CrossVal_100Hz/comparison_wesad_cv_700_vs_100.json` (100Hz-vs-700Hz cross-validation means).
+
+## 2026-04-22
+- Reviewed full end-to-end WESAD DNN workflow from `Data_preprocessing.py`, `Model-training.py`, `Model_testing.py`, and cross-validation scripts/results.
+- Reviewed full StressID transfer workflow from `preprocess_stressid.py`, `Model_testing.py`, `evaluate_mapped_json.py`, and `Results_StressID_Compare/*` outputs.
+- Extracted and compared official run metrics/logs for WESAD in-domain testing and StressID external testing.
+- Performed additional quantitative validation in `conda env torch` to verify cross-dataset confusion structure, score distribution, and threshold sensitivity.
+- Performed additional dataset-level statistics check (label distribution, Cohen's d, feature distribution shift) to support cause-by-cause reverse reasoning.
+- Removed temporary analysis artifacts created during this investigation: `_tmp_*.py` and `Results_StressID_Compare/_tmp_*.json`.
+- Updated `.gitignore` to explicitly ignore `.codex/WORKLOG.md` per project instruction.
+
+## 2026-04-23
+- Started implementation of the stepwise StressID repair-and-gate workflow requested by the user.
+- Created working branch `codex/stressid-stepwise-fix` for gated stepwise fixes.
+- Prepared baseline commit scope (`.gitignore` + `.codex/WORKLOG.md`) before adding orchestration and stepwise repair code.

@@ -21,6 +21,7 @@ Data_Processed/
 __pycache__/
 *.py[cod]
 *$py.class
+.codex/WORKLOG.md
 .env
 .venv
 env/
