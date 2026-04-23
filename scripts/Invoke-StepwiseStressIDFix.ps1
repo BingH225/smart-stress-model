@@ -243,14 +243,14 @@ function Invoke-Step {
 
     # step backup tag
     $tagName = "backup/step{0}/before" -f $stepId
-    $tagExists = (& git -C $RepoRoot tag --list $tagName).Trim()
+    $tagExists = "$(& git -C $RepoRoot tag --list $tagName)".Trim()
     if (-not $tagExists) {
         Invoke-Cmd -Command "git -C `"$RepoRoot`" tag $tagName"
     }
 
     # trial branch
     $trialBranch = "trial/step{0}-{1}" -f $stepId, $stepName
-    $trialExists = (& git -C $RepoRoot branch --list $trialBranch).Trim()
+    $trialExists = "$(& git -C $RepoRoot branch --list $trialBranch)".Trim()
     if ($trialExists) {
         Invoke-Cmd -Command "git -C `"$RepoRoot`" branch -D $trialBranch"
     }
