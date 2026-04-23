@@ -72,8 +72,8 @@ function Wait-RemoteJob {
     )
     while ($true) {
         Start-Sleep -Seconds 20
-        $cmd = "qstat -xf $JobId 2>/dev/null | awk -F= '/job_state/{gsub(/ /,"""",$2); print $2; exit}'"
-        $state = (& ssh $RemoteHost $cmd).Trim()
+        $cmd = "qstat -xf $JobId 2>/dev/null | sed -n 's/^[[:space:]]*job_state = //p' | head -n 1"
+        $state = "$(& ssh $RemoteHost $cmd)".Trim()
         Write-Host "Job $JobId state: $state"
         if ($state -eq "F") {
             break

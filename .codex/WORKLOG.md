@@ -54,3 +54,4 @@
 - Replaced remote bundle upload from `scp -r` to `tar | ssh` streaming in `Invoke-StepwiseStressIDFix.ps1` for Aspire compatibility.
 - Reworked remote bundle upload to `tar.gz + scp + remote extract` in `Invoke-StepwiseStressIDFix.ps1` after stream mode failed on Aspire.
 - Updated PBS template rendering to ASCII encoding (no BOM) and hardened qsub submission failure handling in `Invoke-StepwiseStressIDFix.ps1`.
+- Fixed `Wait-RemoteJob` state polling command in `Invoke-StepwiseStressIDFix.ps1` (switched from fragile awk quoting to sed-based parsing).
