@@ -53,3 +53,4 @@
 - Fixed `scp` remote path formatting in `Invoke-StepwiseStressIDFix.ps1` to avoid path canonicalization errors on Aspire.
 - Replaced remote bundle upload from `scp -r` to `tar | ssh` streaming in `Invoke-StepwiseStressIDFix.ps1` for Aspire compatibility.
 - Reworked remote bundle upload to `tar.gz + scp + remote extract` in `Invoke-StepwiseStressIDFix.ps1` after stream mode failed on Aspire.
+- Updated PBS template rendering to ASCII encoding (no BOM) and hardened qsub submission failure handling in `Invoke-StepwiseStressIDFix.ps1`.

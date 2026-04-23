@@ -62,7 +62,7 @@ function Build-PbsFromTemplate {
     foreach ($k in $Replacements.Keys) {
         $content = $content.Replace($k, [string]$Replacements[$k])
     }
-    $content | Set-Content -Path $OutputPath -Encoding UTF8
+    $content | Set-Content -Path $OutputPath -Encoding Ascii
 }
 
 function Wait-RemoteJob {
@@ -309,8 +309,9 @@ function Invoke-Step {
         Invoke-Cmd -Command "tar -C `"$bundleRoot`" -czf `"$bundleTar`" remote_bundle_gpu_20260410"
         Invoke-Cmd -Command "scp `"$bundleTar`" ${RemoteHost}:$remoteRunRoot/remote_bundle_gpu_20260410.tar.gz"
         Invoke-Cmd -Command "ssh $RemoteHost `"cd $remoteRunRoot && tar -xzf remote_bundle_gpu_20260410.tar.gz`""
-        $submitOut = (& ssh $RemoteHost "cd $remoteRunRoot/remote_bundle_gpu_20260410 && qsub run_gpu_container.pbs").Trim()
-        if ([string]::IsNullOrWhiteSpace($submitOut)) {
+        $submitOutRaw = & ssh $RemoteHost "cd $remoteRunRoot/remote_bundle_gpu_20260410 && qsub run_gpu_container.pbs"
+        $submitOut = "$submitOutRaw".Trim()
+        if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($submitOut)) {
             throw "Failed to submit qsub job for step $stepId"
         }
         $jobId = $submitOut.Split(" ")[0]
