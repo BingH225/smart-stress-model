@@ -361,18 +361,16 @@ function Invoke-Step {
     }
     Write-JsonFile -Path (Join-Path $stepDir "decision.json") -Object $decision
 
-    # update worklog (trial branch)
     $worklogPath = Join-Path $RepoRoot ".codex/WORKLOG.md"
     $statusLine = if ($pass) { "ACCEPT" } else { "REJECT" }
-    Add-Content -Path $worklogPath -Value ("- Step {0} ({1}) remote run {2}: F1 {3:N6}, Acc {4:N6}, decision={5}, job={6}" -f $stepId, $stepName, $timestamp, $candidateF1, $candidateAcc, $statusLine, $jobId)
-    Invoke-Cmd -Command "git -C `"$RepoRoot`" add .codex/WORKLOG.md"
-    Invoke-Cmd -Command "git -C `"$RepoRoot`" commit -m `"step${stepId}: log remote decision ${statusLine}`""
 
     # merge or reject
     if ($pass) {
         Invoke-Cmd -Command "git -C `"$RepoRoot`" checkout $MainBranch"
         Invoke-Cmd -Command "git -C `"$RepoRoot`" cherry-pick $trialBranch~1..$trialBranch"
         Invoke-Cmd -Command "git -C `"$RepoRoot`" branch -D $trialBranch"
+        Add-Content -Path $worklogPath -Value ("- Step {0} ({1}) remote run {2}: F1 {3:N6}, Acc {4:N6}, decision={5}, job={6}" -f $stepId, $stepName, $timestamp, $candidateF1, $candidateAcc, $statusLine, $jobId)
+        Invoke-Cmd -Command "git -C `"$RepoRoot`" add .codex/WORKLOG.md"
         $championAfter = @{
             source = "step${stepId}_${stepName}"
             accuracy = $candidateMetrics.accuracy
@@ -385,6 +383,8 @@ function Invoke-Step {
     } else {
         Invoke-Cmd -Command "git -C `"$RepoRoot`" checkout $MainBranch"
         Invoke-Cmd -Command "git -C `"$RepoRoot`" branch -D $trialBranch"
+        Add-Content -Path $worklogPath -Value ("- Step {0} ({1}) remote run {2}: F1 {3:N6}, Acc {4:N6}, decision={5}, job={6}" -f $stepId, $stepName, $timestamp, $candidateF1, $candidateAcc, $statusLine, $jobId)
+        Invoke-Cmd -Command "git -C `"$RepoRoot`" add .codex/WORKLOG.md"
         Invoke-Cmd -Command "git -C `"$RepoRoot`" commit --allow-empty -m `"step${stepId}: reject ${stepName} (f1=${candidateF1:N6}, acc=${candidateAcc:N6})`""
     }
 }

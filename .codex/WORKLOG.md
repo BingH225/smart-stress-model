@@ -47,3 +47,4 @@
 - Added `scripts/prepare_stepwise_assets.py` to generate stepwise runtime assets (`STRESSID_TEST`, `STRESSID_CALIB`, and WESAD source-domain stats variants).
 - Added `scripts/Invoke-StepwiseStressIDFix.ps1` to orchestrate bundle assembly, SSH upload, qsub execution, polling, result fetch, gating decision, and git branch workflow per step.
 - Ran local smoke checks: Python syntax checks, asset preparation run, and local evaluation smoke run with the new stepwise evaluator.
+- Updated the orchestration script to persist step decision logs on the main branch for both accepted and rejected steps.
