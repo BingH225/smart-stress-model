@@ -305,8 +305,10 @@ function Invoke-Step {
     $jobId = "DRYRUN"
     if (-not $DryRun) {
         Invoke-Cmd -Command "ssh $RemoteHost `"mkdir -p $remoteRunRoot`""
-        $uploadCmd = "tar -C `"$bundleRoot`" -cf - remote_bundle_gpu_20260410 | ssh $RemoteHost `"tar -C $remoteRunRoot -xf -`""
-        Invoke-Cmd -Command $uploadCmd
+        $bundleTar = Join-Path $runtimeRoot ("bundle_step{0}_{1}_{2}.tar.gz" -f $stepId, $stepName, $timestamp)
+        Invoke-Cmd -Command "tar -C `"$bundleRoot`" -czf `"$bundleTar`" remote_bundle_gpu_20260410"
+        Invoke-Cmd -Command "scp `"$bundleTar`" ${RemoteHost}:$remoteRunRoot/remote_bundle_gpu_20260410.tar.gz"
+        Invoke-Cmd -Command "ssh $RemoteHost `"cd $remoteRunRoot && tar -xzf remote_bundle_gpu_20260410.tar.gz`""
         $submitOut = (& ssh $RemoteHost "cd $remoteRunRoot/remote_bundle_gpu_20260410 && qsub run_gpu_container.pbs").Trim()
         if ([string]::IsNullOrWhiteSpace($submitOut)) {
             throw "Failed to submit qsub job for step $stepId"
