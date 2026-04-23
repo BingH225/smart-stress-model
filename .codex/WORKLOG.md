@@ -58,3 +58,4 @@
 - Step 1 (domain_coral) remote run 20260423_144056: F1 0.354945, Acc 0.541772, decision=REJECT, job=13855843.pbs101 (rule: F1 must improve).
 - Step 2 (semantic_negative_tighten) remote run 20260423_152611: F1 0.409855, Acc 0.513380, decision=REJECT, job=13856640.pbs101
 - Fixed commit message metric formatting in scripts/Invoke-StepwiseStressIDFix.ps1 so step accept/reject commits include numeric F1/Acc.
+- Step 3 (robust_baseline_norm) remote run 20260423_153017: F1 0.507153, Acc 0.444729, decision=REJECT, job=13856710.pbs101
