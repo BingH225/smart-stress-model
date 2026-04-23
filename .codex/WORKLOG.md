@@ -56,3 +56,4 @@
 - Updated PBS template rendering to ASCII encoding (no BOM) and hardened qsub submission failure handling in `Invoke-StepwiseStressIDFix.ps1`.
 - Fixed `Wait-RemoteJob` state polling command in `Invoke-StepwiseStressIDFix.ps1` (switched from fragile awk quoting to sed-based parsing).
 - Step 1 (domain_coral) remote run 20260423_144056: F1 0.354945, Acc 0.541772, decision=REJECT, job=13855843.pbs101 (rule: F1 must improve).
+- Step 2 (semantic_negative_tighten) remote run 20260423_152611: F1 0.409855, Acc 0.513380, decision=REJECT, job=13856640.pbs101
