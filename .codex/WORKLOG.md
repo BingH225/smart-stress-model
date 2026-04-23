@@ -42,3 +42,8 @@
 - Started implementation of the stepwise StressID repair-and-gate workflow requested by the user.
 - Created working branch `codex/stressid-stepwise-fix` for gated stepwise fixes.
 - Prepared baseline commit scope (`.gitignore` + `.codex/WORKLOG.md`) before adding orchestration and stepwise repair code.
+- Added `remote_bundle_gpu_20260410/evaluate_stressid_stepwise.py` to support optional CORAL alignment, robust normalization, threshold/temperature calibration, and quality filtering under a single remote evaluation entrypoint.
+- Added `remote_bundle_gpu_20260410/run_gpu_container.template.pbs` as a parameterized PBS template preserving the existing Apptainer execution logic.
+- Added `scripts/prepare_stepwise_assets.py` to generate stepwise runtime assets (`STRESSID_TEST`, `STRESSID_CALIB`, and WESAD source-domain stats variants).
+- Added `scripts/Invoke-StepwiseStressIDFix.ps1` to orchestrate bundle assembly, SSH upload, qsub execution, polling, result fetch, gating decision, and git branch workflow per step.
+- Ran local smoke checks: Python syntax checks, asset preparation run, and local evaluation smoke run with the new stepwise evaluator.

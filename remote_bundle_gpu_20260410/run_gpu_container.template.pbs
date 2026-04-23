@@ -1,0 +1,39 @@
+#!/bin/bash
+#PBS -N __JOB_NAME__
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=01:30:00
+#PBS -j oe
+#PBS -o __PBS_OUT_PATH__
+
+set -euo pipefail
+
+RUN_ROOT="__RUN_ROOT__"
+WORKDIR="$RUN_ROOT/remote_bundle_gpu_20260410"
+cd "$WORKDIR"
+
+if [ ! -d "$RUN_ROOT/.venv" ]; then
+  python3 -m venv "$RUN_ROOT/.venv"
+fi
+
+module load apptainer/1.2.2 || true
+
+IMG="$WORKDIR/pytorch_2.2.2_cuda12.1_cudnn8_devel.sif"
+if [ ! -f "$IMG" ]; then
+  apptainer pull "$IMG" docker://pytorch/pytorch:2.2.2-cuda12.1-cudnn8-devel
+fi
+
+apptainer exec --nv --cleanenv \
+  --bind "$WORKDIR:/workspace" \
+  "$IMG" \
+  python /workspace/evaluate_stressid_stepwise.py \
+  --test-json /workspace/data/STRESSID_TEST.json \
+  --results-json /workspace/results/cross_val_results.json \
+  --models-dir /workspace/models \
+  --output-json /workspace/results/__OUTPUT_JSON__ \
+  --config-json /workspace/config/step_config.json \
+  --source-stats-json /workspace/config/source_stats.json \
+  --calib-json /workspace/data/STRESSID_CALIB.json \
+  --step-name "__STEP_NAME__" \
+  --threshold __THRESHOLD__
+
+echo "DONE $(date)"
