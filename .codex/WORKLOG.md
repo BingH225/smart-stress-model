@@ -60,3 +60,4 @@
 - Fixed commit message metric formatting in scripts/Invoke-StepwiseStressIDFix.ps1 so step accept/reject commits include numeric F1/Acc.
 - Step 3 (robust_baseline_norm) remote run 20260423_153017: F1 0.507153, Acc 0.444729, decision=REJECT, job=13856710.pbs101
 - Step 4 (calibration_threshold) remote run 20260423_155947: F1 0.587444, Acc 0.415873, decision=REJECT, job=13857346.pbs101
+- Step 5 (sampling_protocol_100hz) remote run 20260423_160305: F1 0.587444, Acc 0.415876, decision=REJECT, job=13857508.pbs101
