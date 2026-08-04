@@ -62,3 +62,42 @@
 - Step 4 (calibration_threshold) remote run 20260423_155947: F1 0.587444, Acc 0.415873, decision=REJECT, job=13857346.pbs101
 - Step 5 (sampling_protocol_100hz) remote run 20260423_160305: F1 0.587444, Acc 0.415876, decision=REJECT, job=13857508.pbs101
 - Step 6 (feature_quality_filter) remote run 20260423_160735: F1 0.587444, Acc 0.415875, decision=REJECT, job=13858006.pbs101
+
+## 2026-05-27
+- Added `docs/stressid_followup_plan.md` to turn the advisor feedback into a concrete external-validation and lightweight-adaptation execution plan.
+- Added `docs/stressid_manuscript_outline.md` with manuscript-ready Results/Discussion framing for StressID as external validation.
+- Extended `scripts/prepare_stepwise_assets.py` with a `subject` split mode, `--subject-fraction`, and `subject_split_manifest.json` support for subject-aware StressID adaptation/eval asset generation.
+- Added `scripts/run_stressid_adaptation.py` to compare held-out StressID zero-shot baseline, CORAL, and final-layer fine-tuning on top of the existing WESAD DNN checkpoints.
+- Ran `scripts/prepare_stepwise_assets.py` in subject-aware mode with `--subject-fraction 0.1 --seed 42`, generating `Results_StressID_Compare/subject_adapt_runtime/{asset_summary.json,subject_split_manifest.json,data/STRESSID_ADAPT.json,data/STRESSID_EVAL.json}`.
+- Ran a 1-fold smoke validation of `scripts/run_stressid_adaptation.py` in `conda env torch` with `Results_CrossVal/cross_val_results.json`; verified baseline, CORAL, and final-layer fine-tuning outputs plus JSON/Markdown artifact generation.
+- Confirmed that `Results_CrossVal/cross_val_results.json` only contains 5 folds and switched the formal adaptation run to `Results_CrossVal_Full/cross_val_results.json` with `Models_CrossVal_Full`.
+- Ran the full 15-fold subject-aware adaptation comparison in `conda env torch`; saved formal outputs to `Results_StressID_Compare/stressid_subject_adaptation_{report,comparison,summary}.{json,json,md}`.
+- Recorded full 15-fold held-out StressID averages: zero-shot `Acc 0.4903 / Prec 0.4299 / Rec 0.6306 / F1 0.5106`; CORAL `Acc 0.4977 / Prec 0.4180 / Rec 0.4782 / F1 0.4460`; final-layer fine-tune `Acc 0.4904 / Prec 0.4299 / Rec 0.6300 / F1 0.5104`.
+- Extended `scripts/run_stressid_adaptation.py` with `--pos-weight`, `--neg-weight`, and `--weight-decay` options so final-layer fine-tuning can be tuned without changing the adaptation protocol.
+- Ran a 10-config hyperparameter sweep over final-layer fine-tuning (`lr`, `epochs`, `patience`, `batch-size`, internal seed) using the fixed subject-aware 10% StressID split; no configuration exceeded the zero-shot baseline F1.
+- Ran an 8-config weighted-loss sweep over final-layer fine-tuning (`pos_weight`, `neg_weight`, `weight_decay` plus training hyperparameters); best F1 remained slightly below baseline (`delta_f1` about `-3.0e-05`), confirming no meaningful uplift from final-layer-only tuning under the current protocol.
+- Extended `scripts/run_stressid_adaptation.py` with `--finetune-input-space {raw,coral}` and `--finetune-scope {final_layer,last_block}` so the requested direction-2 / direction-1 adaptation variants can reuse the same runner and reporting format.
+- Ran a 6-config sweep for direction 2 (`CORAL + final-layer fine-tune`) on the fixed 10% subject-aware StressID split; all configurations converged near the CORAL-only behavior and remained well below baseline (`best F1 delta` about `-0.0647`).
+- Generated a new 20% subject-aware StressID split with `scripts/prepare_stepwise_assets.py --subject-fraction 0.2`, saved under `Results_StressID_Compare/subject_adapt_runtime_20pct`.
+- Ran a 5-config sweep for direction 3 (20% target-domain budget) on the new split; raw final-layer fine-tune nearly matched baseline but still stayed below it (`best F1 delta` about `-8.3e-05`), while CORAL + final-layer remained substantially worse (`F1` about `0.4070` vs baseline `0.5020`).
+- Ran a 6-config sweep for direction 1 (`last-block` fine-tune) on the 20% subject-aware split; this consistently underperformed the 20% baseline by about `0.0093` to `0.0123` F1, despite small accuracy increases.
+- Wrote aggregate sweep summaries to `Results_StressID_Compare/{direction2_coral_final_layer_10pct_summary.json,direction3_20pct_summary.json,direction1_last_block_20pct_summary.json}` for quick best-config lookup and manuscript-side evidence review.
+- Extended `scripts/prepare_stepwise_assets.py` with stricter subject sampling controls: `--subject-selection {random,stratified}` plus `--subject-bins`, and recorded per-subject stress ratios / bin selections in `subject_split_manifest.json`.
+- Extended `scripts/run_stressid_adaptation.py` with adaptation-objective controls: `--train-objective {bce,weighted_bce,focal,soft_f1_bce}`, `--threshold-mode {fixed_0.5,val_f1}`, threshold range/grid options, and per-fold selected-threshold reporting.
+- Generated a new stratified 20% subject-aware runtime split at `Results_StressID_Compare/subject_adapt_runtime_20pct_stratified_seed42` and verified the new manifest captures balanced low/mid/high stress-ratio subject coverage.
+- Ran a 5-fold proxy search on the original random 20% split for step-1 objective redesign (`BCE+val-threshold`, `weighted BCE`, `focal`, `soft-F1+BCE`); all threshold-aware variants improved over the zero-shot baseline, with F1 rising from `0.4984` to about `0.5407-0.5410`.
+- Ran full 15-fold confirmation on the original random 20% split for `BCE + validation-threshold` and `focal + validation-threshold`; the best full result was `focal + validation-threshold`, improving held-out StressID F1 from `0.5020` to `0.5355` (`delta_f1 = +0.0335`) while reducing accuracy from `0.4946` to `0.4790`.
+- Ran stricter step-2 multi-seed evaluation with stratified 20% subject sampling for seeds `42-46`, each with full 15-fold `focal + validation-threshold` adaptation; all 5 seeds improved over their respective baselines.
+- Aggregated step-1/step-2 summaries to `Results_StressID_Compare/{step12_stratified_multiseed_summary.json,step12_stratified_multiseed_summary.md}`; stratified multi-seed averages were baseline `F1 0.5029 ± 0.0105` vs adaptation `F1 0.5325 ± 0.0111`, mean `delta_f1 = +0.0296 ± 0.0025`, with mean selected threshold `0.1296`.
+
+## 2026-07-10 21:12:12 +08:00
+- Reviewed the latest advisor feedback and the current `SmartStress` manuscript state to decide the next project priority.
+- Confirmed the advisor wants work to shift away from additional StressID adaptation experiments and toward manuscript-level strengthening: novelty statement, system-level differentiation, Discussion framing, figure quality, and final abstract/conclusion alignment.
+- Confirmed the manuscript already contains the needed StressID external-validation narrative and multi-split lightweight-adaptation evidence, so the next phase should focus on paper polishing rather than new model-method expansion.
+
+## 2026-07-13 16:11:10 +08:00
+- Cross-checked the manuscript's StressID claims against `step12_stratified_multiseed_summary`: baseline F1 `0.5029 +/- 0.0105`, final-layer adaptation F1 `0.5325 +/- 0.0111`, five wins across seeds 42-46, and validation-selected mean threshold `0.1296`; the reported manuscript metrics and trade-off interpretation are consistent with these artifacts.
+- Audited SHAP model provenance and confirmed `Model_interpretability.py` currently imports the standard `ClassifierECG` from `Model_testing.py`, while the manuscript attributes the SHAP analysis to the attention-augmented PhysioSense model. Recorded this as a pre-submission evidence-consistency issue. No experiment code or result artifact was modified.
+
+## 2026-07-15 15:03:55 +08:00
+- Scoped possible SmartStress capstone extensions against the original course prototype and current journal manuscript. Prioritized an uncertainty-aware, personalization-adaptive closed-loop system combining calibration, drift/OOD detection, label-efficient subject adaptation, and abstention-aware orchestration; also identified RAG safety/provenance, multimodal missing-sensor robustness, edge deployment, and adaptive intervention learning as alternative directions. No source code, experiment artifact, or manuscript content was modified.
